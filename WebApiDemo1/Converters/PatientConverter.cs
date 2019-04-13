@@ -16,6 +16,7 @@ namespace WebApiDemo1.Converters
 
             return new Contracts.Patient()
             {
+                Id = patient.Id,
                 FirstName = patient.FirstName,
                 LastName = patient.LastName,
                 Email = patient.Email,
@@ -34,7 +35,6 @@ namespace WebApiDemo1.Converters
 
             return new Models.Patient()
             {
-                Id = patient.Id,
                 FirstName = patient.FirstName,
                 LastName = patient.LastName,
                 Email = patient.Email,

@@ -76,6 +76,28 @@ namespace WebApiDemo1.Controllers
             return Ok(dbPatient.ToContract());
         }
 
+        [Authorize]
+        [HttpGet]
+        [Route("api/Patients/DentistId/{id}")]
+        public IEnumerable<Patient> GetPatientsByDentistId(int id)
+        {
+            List<Patient> patients = new List<Patient>();
+            using (WebApiDemoDb1Entities db = new WebApiDemoDb1Entities())
+            {
+                var dbPatient = db.Patients.Where(p => p.DentistId == id).ToList();
+
+                if (dbPatient.Count == 0)
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+
+                foreach (var row in dbPatient)
+                {
+                    patients.Add(row.ToContract());
+                    row.ToContract();
+                }
+            }
+            return patients;
+        }
+
         // POST: api/Patients
         [Authorize]
         [HttpPost]
