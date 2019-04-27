@@ -218,7 +218,6 @@
     <Compile Include="Controllers\DentistsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Converters\DentistConverter.cs" />
     <Compile Include="Converters\PatientConverter.cs" />
     <Compile Include="Models\Dentist.cs">

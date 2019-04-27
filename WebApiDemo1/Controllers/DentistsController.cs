@@ -20,11 +20,11 @@ namespace WebApiDemo1.Controllers
         {
             using (var db = new WebApiDemoDb1Entities())
             {
+                if (!ModelState.IsValid)
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+
                 if (db.Dentists.Any(d => d.Phone == dentist.Phone || d.Email == dentist.Email))
                     return BadRequest("Record already exists!");
-
-                if (!ModelState.IsValid)
-                        throw new HttpResponseException(HttpStatusCode.BadRequest);
 
                     var dbDentist = dentist.ToDatabase();
                     db.Dentists.Add(dbDentist);
@@ -44,7 +44,7 @@ namespace WebApiDemo1.Controllers
         // GET: api/Dentists
         [Authorize]
         [HttpGet]
-        public IEnumerable<Contracts.Dentist> GetDentists()
+        public IEnumerable<Dentist> GetDentists()
         {
             List<Dentist> dentists = new List<Dentist>();
 
